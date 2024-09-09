@@ -105,122 +105,124 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Welcome Message
-            const Text(
-              'Good Morning, $userName!',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 10),
-
-            // Daily Quote or Inspiration
-            const Text(
-              '"Start each day with a positive thought and a grateful heart."',
-              style: TextStyle(
-                fontSize: 16,
-                fontStyle: FontStyle.italic,
-                color: Colors.grey,
-              ),
-            ),
-            const SizedBox(height: 20),
-
-            // Today's Entry Section
-            ListTile(
-              contentPadding: const EdgeInsets.all(0),
-              title: const Text(
-                'Today\'s Entry',
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Welcome Message
+              const Text(
+                'Good Morning, $userName!',
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              subtitle: const Text(
-                'View or add today\'s diary entry.',
-              ),
-              trailing: const Icon(Icons.arrow_forward_ios),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const EntryListScreen(),
-                  ),
-                );
-              },
-            ),
-            const SizedBox(height: 20),
+              const SizedBox(height: 10),
 
-            // Recent Entries directly after Today's Entry
-            ...entries.asMap().entries.map((entry) {
-              int index = entry.key;
-              Map<String, dynamic> entryData = entry.value;
-              return ListTile(
+              // Daily Quote or Inspiration
+              const Text(
+                '"Start each day with a positive thought and a grateful heart."',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontStyle: FontStyle.italic,
+                  color: Colors.grey,
+                ),
+              ),
+              const SizedBox(height: 20),
+
+              // Today's Entry Section
+              ListTile(
                 contentPadding: const EdgeInsets.all(0),
-                title: Text(
-                  entryData['title'],
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
+                title: const Text(
+                  'Today\'s Entry',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-                subtitle: Text(
-                  '${entryData['snippet']} \n${entryData['date'].toLocal()}'
-                      .split(' ')[0], // Date format: yyyy-mm-dd
-                  style: const TextStyle(
-                    color: Colors.grey,
-                  ),
+                subtitle: const Text(
+                  'View or add today\'s diary entry.',
                 ),
-                trailing: IconButton(
-                  icon: const Icon(Icons.delete, color: Colors.black),
-                  onPressed: () {
-                    _deleteEntry(index);
+                trailing: const Icon(Icons.arrow_forward_ios),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const EntryListScreen(),
+                    ),
+                  );
+                },
+              ),
+              const SizedBox(height: 20),
+
+              // Recent Entries directly after Today's Entry
+              ...entries.asMap().entries.map((entry) {
+                int index = entry.key;
+                Map<String, dynamic> entryData = entry.value;
+                return ListTile(
+                  contentPadding: const EdgeInsets.all(0),
+                  title: Text(
+                    entryData['title'],
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  subtitle: Text(
+                    '${entryData['snippet']} \n${entryData['date'].toLocal()}'
+                        .split(' ')[0], // Date format: yyyy-mm-dd
+                    style: const TextStyle(
+                      color: Colors.grey,
+                    ),
+                  ),
+                  trailing: IconButton(
+                    icon: const Icon(Icons.delete, color: Colors.black),
+                    onPressed: () {
+                      _deleteEntry(index);
+                    },
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => EditDiaryEntryScreen(
+                          initialContent: entryData['content'],
+                        ),
+                      ),
+                    );
                   },
+                );
+              }).toList(),
+              const SizedBox(height: 20),
+
+              // Calendar View Section
+              ListTile(
+                contentPadding: const EdgeInsets.all(0),
+                title: const Text(
+                  'Calendar View',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                subtitle: const Text(
+                  'View entries by date.',
+                ),
+                trailing: const Icon(
+                  Icons.calendar_today,
+                  color: Colors.blue,
                 ),
                 onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => EditDiaryEntryScreen(
-                        initialContent: entryData['content'],
-                      ),
-                    ),
+                      builder: (context) => const CalendarScreen(),
+                    ), // Navigate to CalendarScreen
                   );
                 },
-              );
-            }).toList(),
-            const SizedBox(height: 20),
-
-            // Calendar View Section
-            ListTile(
-              contentPadding: const EdgeInsets.all(0),
-              title: const Text(
-                'Calendar View',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
               ),
-              subtitle: const Text(
-                'View entries by date.',
-              ),
-              trailing: const Icon(
-                Icons.calendar_today,
-                color: Colors.blue,
-              ),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const CalendarScreen(),
-                  ), // Navigate to CalendarScreen
-                );
-              },
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
