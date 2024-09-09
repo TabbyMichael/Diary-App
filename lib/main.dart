@@ -63,7 +63,7 @@ class MyApp extends StatelessWidget {
         '/contact_support': (context) => const PrivacySecurityScreen(),
         '/profile': (context) => const ProfileSection(),
         '/help_support': (context) => const HelpSupportSection(),
-        '/': (context) => const MoodTrackingScreen(),
+        // '/': (context) => const MoodTrackingScreen(),
       },
     );
   }
