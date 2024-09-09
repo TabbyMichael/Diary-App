@@ -1,10 +1,75 @@
 import 'package:diary/Home%20Screen/entry_list.dart';
 import 'package:flutter/material.dart';
-import 'calendar_screen.dart'; // Import your CalendarScreenimport 'entry_list_screen.dart'; // Import your EntryListScreen
-import 'entry_screen.dart'; // Import your EntryScreen
+import 'edit_diary_entry_screen.dart'; // Import the EditDiaryEntryScreen
+import 'calendar_screen.dart'; // Import your CalendarScreen
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  List<Map<String, dynamic>> entries = [
+    {
+      'title': 'Entry Title 1',
+      'snippet': 'Snippet of the entry...',
+      'date': DateTime.now(),
+      'content': 'Content of Entry Title 1'
+    },
+    {
+      'title': 'Entry Title 2',
+      'snippet': 'Snippet of the entry...',
+      'date': DateTime.now().subtract(
+        const Duration(days: 1),
+      ),
+      'content': 'Content of Entry Title 2'
+    },
+    {
+      'title': 'Entry Title 3',
+      'snippet': 'Snippet of the entry...',
+      'date': DateTime.now().subtract(
+        const Duration(days: 2),
+      ),
+      'content': 'Content of Entry Title 3'
+    },
+  ];
+
+  void _deleteEntry(int index) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Delete Entry'),
+          content: const Text(
+            'Are you sure you want to delete this entry?',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+              },
+              child: const Text(
+                'Cancel',
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  entries.removeAt(index);
+                });
+                Navigator.of(context).pop(); // Close the dialog
+              },
+              child: const Text(
+                'Delete',
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -90,28 +155,43 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 20),
 
             // Recent Entries directly after Today's Entry
-            _buildEntryTile(
-              context,
-              'Entry Title 1',
-              'Snippet of the entry...',
-              today,
-            ),
-            _buildEntryTile(
-              context,
-              'Entry Title 2',
-              'Snippet of the entry...',
-              today.subtract(
-                const Duration(days: 1),
-              ),
-            ),
-            _buildEntryTile(
-              context,
-              'Entry Title 3',
-              'Snippet of the entry...',
-              today.subtract(
-                const Duration(days: 2),
-              ),
-            ),
+            ...entries.asMap().entries.map((entry) {
+              int index = entry.key;
+              Map<String, dynamic> entryData = entry.value;
+              return ListTile(
+                contentPadding: const EdgeInsets.all(0),
+                title: Text(
+                  entryData['title'],
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                subtitle: Text(
+                  '${entryData['snippet']} \n${entryData['date'].toLocal()}'
+                      .split(' ')[0], // Date format: yyyy-mm-dd
+                  style: const TextStyle(
+                    color: Colors.grey,
+                  ),
+                ),
+                trailing: IconButton(
+                  icon: const Icon(Icons.delete, color: Colors.black),
+                  onPressed: () {
+                    _deleteEntry(index);
+                  },
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => EditDiaryEntryScreen(
+                        initialContent: entryData['content'],
+                      ),
+                    ),
+                  );
+                },
+              );
+            }).toList(),
             const SizedBox(height: 20),
 
             // Calendar View Section
@@ -127,7 +207,10 @@ class HomeScreen extends StatelessWidget {
               subtitle: const Text(
                 'View entries by date.',
               ),
-              trailing: const Icon(Icons.calendar_today, color: Colors.blue),
+              trailing: const Icon(
+                Icons.calendar_today,
+                color: Colors.blue,
+              ),
               onTap: () {
                 Navigator.push(
                   context,
@@ -154,35 +237,6 @@ class HomeScreen extends StatelessWidget {
           size: 35,
         ),
       ),
-    );
-  }
-
-  Widget _buildEntryTile(
-      BuildContext context, String title, String snippet, DateTime date) {
-    return ListTile(
-      contentPadding: const EdgeInsets.all(0),
-      title: Text(
-        title,
-        style: const TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w500,
-        ),
-      ),
-      subtitle: Text(
-        '$snippet \n${date.toLocal()}'.split(' ')[0], // Date format: yyyy-mm-dd
-        style: const TextStyle(
-          color: Colors.grey,
-        ),
-      ),
-      trailing: const Icon(Icons.arrow_forward_ios),
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const EntryListScreen(),
-          ),
-        );
-      },
     );
   }
 }

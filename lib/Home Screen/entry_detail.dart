@@ -39,6 +39,9 @@ class _EntryDetailScreenState extends State<EntryDetailScreen> {
           ),
         ),
         backgroundColor: Colors.blue,
+        iconTheme: const IconThemeData(
+          color: Colors.white, // Set the icon color to white
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(18.0),
@@ -58,7 +61,7 @@ class _EntryDetailScreenState extends State<EntryDetailScreen> {
                 ),
                 IconButton(
                   icon: const Icon(Icons.calendar_today,
-                      color: Colors.blue), // Blue color for calendar icon
+                      color: Colors.white), // White color for calendar icon
                   onPressed: () => _selectDate(context),
                 ),
               ],
@@ -193,7 +196,7 @@ class _EntryDetailScreenState extends State<EntryDetailScreen> {
                       fontWeight: FontWeight.w400,
                       color: Colors.white,
                     ),
-                  ), // Updated text to 'Save'
+                  ),
                 ),
               ),
             ),

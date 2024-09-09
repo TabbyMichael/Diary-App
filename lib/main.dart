@@ -1,19 +1,25 @@
 import 'package:diary/Home%20Screen/calendar_screen.dart';
-import 'package:diary/about_help_screen.dart';
-import 'package:diary/backup_restore_screen.dart';
+import 'package:diary/Settings/about_help_screen.dart';
+import 'package:diary/Settings/backup_restore_screen.dart';
 import 'package:diary/Home%20Screen/daily_prompts_screen.dart';
 import 'package:diary/Home%20Screen/entry_detail.dart';
 import 'package:diary/Home%20Screen/entry_list.dart';
-import 'package:diary/forgot_password_screen.dart';
+import 'package:diary/Authentication/forgot_password_screen.dart';
 import 'package:diary/Home%20Screen/home_screen.dart';
+import 'package:diary/Settings/help_support_section.dart';
+import 'package:diary/Settings/language_section.dart';
+import 'package:diary/Settings/notifications_section.dart';
+import 'package:diary/Settings/profile_section.dart';
+import 'package:diary/Settings/terms_section.dart';
+import 'package:diary/Settings/theme_section.dart';
 import 'package:diary/media_gallery_screen.dart';
 import 'package:diary/mood_tracking_screen.dart';
-import 'package:diary/privacy_security_screen.dart';
+import 'package:diary/Settings/privacy_policy_screen.dart';
 import 'package:diary/reminder_screen.dart';
-import 'package:diary/settings_screen.dart';
-import 'package:diary/sign_in_screen.dart';
-import 'package:diary/sign_up_screen.dart';
-import 'package:diary/splash_screen.dart';
+import 'package:diary/Settings/settings_screen.dart';
+import 'package:diary/Authentication/sign_in_screen.dart';
+import 'package:diary/Authentication/sign_up_screen.dart';
+import 'package:diary/Authentication/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -47,6 +53,17 @@ class MyApp extends StatelessWidget {
         '/about-help': (context) => const AboutHelpScreen(),
         '/daily-prompts': (context) => const DailyPromptsScreen(),
         '/mood-tracking': (context) => const MoodTrackingScreen(),
+        '/privacy_policy': (context) => const PrivacySecurityScreen(),
+        '/backup_restore': (context) => const BackupRestoreScreen(),
+        '/about': (context) => const AboutHelpScreen(),
+        '/terms': (context) => const TermsSection(),
+        '/language': (context) => const LanguageSection(),
+        '/notifications': (context) => const NotificationsSection(),
+        '/theme': (context) => const ThemeSection(),
+        '/contact_support': (context) => const PrivacySecurityScreen(),
+        '/profile': (context) => const ProfileSection(),
+        '/help_support': (context) => const HelpSupportSection(),
+        '/': (context) => const MoodTrackingScreen(),
       },
     );
   }
