@@ -71,6 +71,10 @@ class _ThemeScreenState extends State<ThemeScreen> {
             onPressed: () {
               // Apply the selected theme
             },
+            style: ElevatedButton.styleFrom(
+              backgroundColor:
+                  Colors.blue, // Make button the same color as AppBar
+            ),
             child: const Text(
               'Save Theme',
               style: TextStyle(
@@ -78,10 +82,6 @@ class _ThemeScreenState extends State<ThemeScreen> {
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
-            ),
-            style: ElevatedButton.styleFrom(
-              backgroundColor:
-                  Colors.blue, // Make button the same color as AppBar
             ),
           ),
         ],

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 // app_locale.dart
 
 mixin AppLocale {

@@ -1,4 +1,4 @@
-import 'package:diary/Settings/Language/app_locale_provider.dart';
+import 'package:diary/Language/app_locale_provider.dart';
 import 'package:flutter/material.dart';
 
 class LanguageScreen extends StatefulWidget {

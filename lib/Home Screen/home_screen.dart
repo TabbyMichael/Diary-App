@@ -192,7 +192,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   },
                 );
-              }).toList(),
+              }),
               const SizedBox(height: 20),
 
               // Calendar View Section

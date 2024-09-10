@@ -1,7 +1,16 @@
+import 'package:diary/Help%20&%20Support/FAQS_sreen%20.dart';
+import 'package:diary/Help%20&%20Support/contact_us_screen%20.dart';
+import 'package:diary/Help%20&%20Support/live_chat_screen%20.dart';
+import 'package:diary/Privacy/app_permissions_section.dart';
+import 'package:diary/Privacy/enable_encryption_section.dart';
+import 'package:diary/Privacy/login_history_section.dart';
+import 'package:diary/Privacy/privacy_security_section.dart.dart';
+import 'package:diary/Privacy/security_tips_section.dart';
+import 'package:diary/Privacy/two_factor_authentication_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:diary/Settings/Language/app_locale_provider.dart';
-import 'package:diary/Settings/Language/language_section.dart';
+import 'package:diary/Language/app_locale_provider.dart';
+import 'package:diary/Language/language_section.dart';
 import 'package:diary/Authentication/forgot_password_screen.dart';
 import 'package:diary/Authentication/sign_in_screen.dart';
 import 'package:diary/Authentication/sign_up_screen.dart';
@@ -13,9 +22,9 @@ import 'package:diary/Home%20Screen/entry_list.dart';
 import 'package:diary/Home%20Screen/home_screen.dart';
 import 'package:diary/Settings/about_help_screen.dart';
 import 'package:diary/Settings/backup_restore_screen.dart';
-import 'package:diary/Settings/help_support_section.dart';
+import 'package:diary/Help%20&%20Support/help_support_section.dart';
 import 'package:diary/Settings/notifications_section.dart';
-import 'package:diary/Settings/privacy_policy_screen.dart';
+import 'package:diary/Privacy/privacy_policy_screen.dart';
 import 'package:diary/Settings/profile_section.dart';
 import 'package:diary/Settings/settings_screen.dart';
 import 'package:diary/Settings/terms_section.dart';
@@ -67,7 +76,9 @@ class _MyAppState extends State<MyApp> {
           ),
           switchTheme: SwitchThemeData(
             thumbColor: WidgetStateProperty.all(Colors.blue),
-            trackColor: WidgetStateProperty.all(Colors.blue.withOpacity(0.5)),
+            trackColor: WidgetStateProperty.all(
+              Colors.blue.withOpacity(0.5),
+            ),
           ),
         ),
         supportedLocales: const [
@@ -156,6 +167,10 @@ class _MyAppState extends State<MyApp> {
           '/sign_up': (context) => const SignUpScreen(),
           '/forgot_password': (context) => const ForgotPasswordScreen(),
           '/home': (context) => const HomeScreen(),
+          '/help_support': (context) => const HelpSupportSection(),
+          '/faq': (context) => const FAQScreen(),
+          '/contact_us': (context) => const ContactUsScreen(),
+          '/live_chat': (context) => const LiveChatScreen(),
           '/entry-list': (context) => const EntryListScreen(),
           '/entry': (context) => const EntryDetailScreen(),
           '/media_gallery': (context) => const MediaGalleryScreen(),
@@ -167,15 +182,20 @@ class _MyAppState extends State<MyApp> {
           '/about_help': (context) => const AboutHelpScreen(),
           '/daily_prompts': (context) => const DailyPromptsScreen(),
           '/mood-tracking': (context) => const MoodTrackingScreen(),
-          '/privacy_policy': (context) => const PrivacySecurityScreen(),
+          '/privacy_policy': (context) => const PrivacyPolicyScreen(),
           '/about': (context) => const AboutHelpScreen(),
-          '/terms': (context) => const TermsSection(),
+          '/terms': (context) => const TermsScreen(),
           '/language': (context) => const LanguageScreen(),
           '/notifications': (context) => const NotificationsScreen(),
           '/theme': (context) => const ThemeScreen(),
-          '/contact_support': (context) => const PrivacySecurityScreen(),
           '/profile': (context) => const ProfileSection(),
-          '/help_support': (context) => const HelpSupportSection(),
+          '/two_factor_authentication': (context) =>
+              const TwoFactorAuthenticationScreen(),
+          '/login_history': (context) => const LoginHistoryScreen(),
+          '/app_permissions': (context) => const AppPermissionsScreen(),
+          '/enable_encryption': (context) => const EnableEncryptionScreen(),
+          '/security_tips': (context) => const SecurityTipsScreen(),
+          // '/theme': (context) => const ThemeScreen(),
         },
       ),
     );

@@ -28,7 +28,7 @@ class PrivacySecurityScreen extends StatelessWidget {
             title: const Text('Change Password'),
             onTap: () {
               // Navigate to Change Password Screen
-              Navigator.pushNamed(context, '/change_password');
+              Navigator.pushNamed(context, '/forgot_password');
             },
           ),
           const Divider(),
@@ -51,17 +51,6 @@ class PrivacySecurityScreen extends StatelessWidget {
             onTap: () {
               // Navigate to 2FA Setup Screen
               Navigator.pushNamed(context, '/two_factor_authentication');
-            },
-          ),
-          const Divider(),
-
-          // Privacy Settings Section
-          ListTile(
-            leading: const Icon(Icons.privacy_tip),
-            title: const Text('Privacy Settings'),
-            onTap: () {
-              // Navigate to Privacy Settings Screen
-              Navigator.pushNamed(context, '/privacy_settings');
             },
           ),
           const Divider(),
@@ -105,7 +94,7 @@ class PrivacySecurityScreen extends StatelessWidget {
             title: const Text('Contact Support'),
             onTap: () {
               // Navigate to Contact Support Screen
-              Navigator.pushNamed(context, '/contact_support');
+              Navigator.pushNamed(context, '/contact_us');
             },
           ),
 

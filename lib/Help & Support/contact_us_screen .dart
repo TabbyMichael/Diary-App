@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({super.key});
+class ContactUsScreen extends StatelessWidget {
+  const ContactUsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Sign Up',
+          'Contact Us',
           style: TextStyle(
             fontSize: 25,
             fontWeight: FontWeight.w500,
@@ -20,37 +20,47 @@ class SignUpScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start, // Align labels to start
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const Text('Name'),
+            const SizedBox(height: 8), // Add spacing between label and field
+            const TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Enter your name',
+              ),
+            ),
+            const SizedBox(height: 16), // Add spacing between fields
+
             const Text('Email'),
-            const SizedBox(height: 8), // Space between label and text field
+            const SizedBox(height: 8), // Add spacing between label and field
             const TextField(
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: 'Enter your email',
               ),
             ),
-            const SizedBox(height: 16), // Space between fields
+            const SizedBox(height: 16), // Add spacing between fields
 
-            const Text('Password'),
-            const SizedBox(height: 8), // Space between label and text field
-            const TextField(
-              obscureText: true,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Enter your password',
+            const Text('Message'),
+            const SizedBox(height: 8), // Add spacing between label and field
+            const Flexible(
+              child: TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Enter your message',
+                ),
+                minLines: 6, // Minimum lines when collapsed
+                maxLines: 10, // Maximum lines when expanded
               ),
             ),
-            const SizedBox(height: 20), // Space before button
+            const SizedBox(height: 20),
 
             Center(
               // Center the button
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.pushReplacementNamed(
-                    context,
-                    '/home',
-                  );
+                  // Handle contact form submission
                 },
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.white,
@@ -58,10 +68,7 @@ class SignUpScreen extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(
                       horizontal: 32, vertical: 12), // Button padding
                 ),
-                child: const Text(
-                  'Sign Up',
-                  style: TextStyle(fontSize: 16),
-                ),
+                child: const Text('Submit'),
               ),
             ),
           ],
