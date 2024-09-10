@@ -7,12 +7,14 @@ class AboutHelpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'About & Help',
-          style: TextStyle(
-            fontSize: 25,
-            fontWeight: FontWeight.w500,
-            color: Colors.white,
+        title: const Center(
+          child: Text(
+            'About',
+            style: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.w500,
+              color: Colors.white,
+            ),
           ),
         ),
         backgroundColor: Colors.blue,
@@ -37,6 +39,14 @@ class AboutHelpScreen extends StatelessWidget {
                 subtitle: Text('1.0.0'),
               ),
             ),
+            const Card(
+              margin: EdgeInsets.only(bottom: 16.0),
+              child: ListTile(
+                leading: Icon(Icons.info_outline),
+                title: Text('Build Number'),
+                subtitle: Text('1001'),
+              ),
+            ),
             Card(
               margin: const EdgeInsets.only(bottom: 16.0),
               child: ListTile(
@@ -55,6 +65,26 @@ class AboutHelpScreen extends StatelessWidget {
                 title: const Text('FAQ and User Guide'),
                 onTap: () {
                   Navigator.pushNamed(context, '/faq');
+                },
+              ),
+            ),
+            Card(
+              margin: const EdgeInsets.only(bottom: 16.0),
+              child: ListTile(
+                leading: const Icon(Icons.policy),
+                title: const Text('Privacy Policy'),
+                onTap: () {
+                  Navigator.pushNamed(context, '/privacy_policy');
+                },
+              ),
+            ),
+            Card(
+              margin: const EdgeInsets.only(bottom: 16.0),
+              child: ListTile(
+                leading: const Icon(Icons.article),
+                title: const Text('Terms of Service'),
+                onTap: () {
+                  Navigator.pushNamed(context, '/terms');
                 },
               ),
             ),
