@@ -7,12 +7,14 @@ class SignInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Sign In',
-          style: TextStyle(
-            fontSize: 25,
-            fontWeight: FontWeight.w500,
-            color: Colors.white,
+        title: const Center(
+          child: Text(
+            'Sign In',
+            style: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.w500,
+              color: Colors.white,
+            ),
           ),
         ),
         backgroundColor: Colors.blue,

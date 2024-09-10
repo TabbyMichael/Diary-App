@@ -32,13 +32,15 @@ class SplashScreen extends StatelessWidget {
     return const Scaffold(
       backgroundColor: Colors.blue,
       body: Center(
-        child: Text(
-          'Diary App',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 34,
-            fontWeight: FontWeight.bold,
-            fontStyle: FontStyle.italic, // Adding fontStyle
+        child: Center(
+          child: Text(
+            'Diary App',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 34,
+              fontWeight: FontWeight.bold,
+              fontStyle: FontStyle.italic, // Adding fontStyle
+            ),
           ),
         ),
       ),

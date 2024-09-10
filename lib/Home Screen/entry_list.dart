@@ -11,12 +11,14 @@ class EntryListScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Diary Entries',
-          style: TextStyle(
-            fontSize: 25,
-            fontWeight: FontWeight.w500,
-            color: Colors.white,
+        title: const Center(
+          child: Text(
+            'Diary Entries',
+            style: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.w500,
+              color: Colors.white,
+            ),
           ),
         ),
         backgroundColor: Colors.blue,

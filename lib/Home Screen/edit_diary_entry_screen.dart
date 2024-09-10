@@ -29,12 +29,14 @@ class _EditDiaryEntryScreenState extends State<EditDiaryEntryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Edit Diary Entry',
-          style: TextStyle(
-            fontSize: 25,
-            fontWeight: FontWeight.w500,
-            color: Colors.white,
+        title: const Center(
+          child: Text(
+            'Edit Diary Entry',
+            style: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.w500,
+              color: Colors.white,
+            ),
           ),
         ),
         backgroundColor: Colors.blue,

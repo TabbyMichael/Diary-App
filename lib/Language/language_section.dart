@@ -92,12 +92,14 @@ class _LanguageScreenState extends State<LanguageScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Language',
-          style: TextStyle(
-            fontSize: 25,
-            fontWeight: FontWeight.w500,
-            color: Colors.white,
+        title: const Center(
+          child: Text(
+            'Language',
+            style: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.w500,
+              color: Colors.white,
+            ),
           ),
         ),
         backgroundColor: Colors.blue,
