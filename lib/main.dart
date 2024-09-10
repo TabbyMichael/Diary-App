@@ -7,6 +7,10 @@ import 'package:diary/Privacy/login_history_section.dart';
 import 'package:diary/Privacy/privacy_security_section.dart.dart';
 import 'package:diary/Privacy/security_tips_section.dart';
 import 'package:diary/Privacy/two_factor_authentication_section.dart';
+import 'package:diary/Profile/account_information_screen%20.dart';
+import 'package:diary/Profile/delete_account.dart';
+import 'package:diary/Profile/edit_profile.dart';
+import 'package:diary/Profile/linked_accounts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:diary/Language/app_locale_provider.dart';
@@ -25,7 +29,7 @@ import 'package:diary/Settings/backup_restore_screen.dart';
 import 'package:diary/Help%20&%20Support/help_support_section.dart';
 import 'package:diary/Settings/notifications_section.dart';
 import 'package:diary/Privacy/privacy_policy_screen.dart';
-import 'package:diary/Settings/profile_section.dart';
+import 'package:diary/Profile/profile_section.dart';
 import 'package:diary/Settings/settings_screen.dart';
 import 'package:diary/Settings/terms_section.dart';
 import 'package:diary/Settings/theme_section.dart';
@@ -160,9 +164,9 @@ class _MyAppState extends State<MyApp> {
           // Add your localization delegate here
         ],
         locale: _currentLocale,
-        initialRoute: '/',
+        initialRoute: '/splash_screen',
         routes: {
-          '/': (context) => const SplashScreen(),
+          '/splash_screen': (context) => const SplashScreen(),
           '/sign_in': (context) => const SignInScreen(),
           '/sign_up': (context) => const SignUpScreen(),
           '/forgot_password': (context) => const ForgotPasswordScreen(),
@@ -195,6 +199,11 @@ class _MyAppState extends State<MyApp> {
           '/app_permissions': (context) => const AppPermissionsScreen(),
           '/enable_encryption': (context) => const EnableEncryptionScreen(),
           '/security_tips': (context) => const SecurityTipsScreen(),
+          '/edit_profile': (context) => const EditProfileScreen(),
+          '/linked_accounts': (context) => const LinkedAccountsScreen(),
+          '/delete_account': (context) => const DeleteAccountScreen(),
+          '/accounts_information': (context) =>
+              const AccountInformationScreen(),
           // '/theme': (context) => const ThemeScreen(),
         },
       ),

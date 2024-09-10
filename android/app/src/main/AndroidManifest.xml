@@ -2,14 +2,16 @@
     package="com.example.diary">
 
     <!-- Permissions for external storage access -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
 
     <!-- The main application tag -->
     <application
         android:label="diary"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:requestLegacyExternalStorage="true"> <!-- Add this line for Android 10 and above -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
