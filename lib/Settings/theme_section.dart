@@ -38,7 +38,9 @@ class _ThemeScreenState extends State<ThemeScreen> {
         title: const Text(
           'Theme Settings',
           style: TextStyle(
-            color: Colors.white, // Set AppBar text to white
+            fontSize: 25,
+            fontWeight: FontWeight.w500,
+            color: Colors.white,
           ),
         ),
         backgroundColor: Colors.blue,

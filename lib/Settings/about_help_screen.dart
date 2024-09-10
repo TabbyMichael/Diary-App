@@ -7,7 +7,15 @@ class AboutHelpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('About & Help'),
+        title: const Text(
+          'About & Help',
+          style: TextStyle(
+            fontSize: 25,
+            fontWeight: FontWeight.w500,
+            color: Colors.white,
+          ),
+        ),
+        backgroundColor: Colors.blue,
         actions: [
           IconButton(
             icon: const Icon(Icons.info_outline),
@@ -36,7 +44,7 @@ class AboutHelpScreen extends StatelessWidget {
                 title: const Text('Contact Support'),
                 subtitle: const Text('support@example.com'),
                 onTap: () {
-                  // Open email client or show dialog
+                  Navigator.pushNamed(context, '/contact_us');
                 },
               ),
             ),
@@ -46,7 +54,7 @@ class AboutHelpScreen extends StatelessWidget {
                 leading: const Icon(Icons.question_answer),
                 title: const Text('FAQ and User Guide'),
                 onTap: () {
-                  // Navigate to FAQ or User Guide
+                  Navigator.pushNamed(context, '/faq');
                 },
               ),
             ),

@@ -32,7 +32,10 @@ class _EditDiaryEntryScreenState extends State<EditDiaryEntryScreen> {
         title: const Text(
           'Edit Diary Entry',
           style: TextStyle(
-              fontSize: 25, fontWeight: FontWeight.w500, color: Colors.white),
+            fontSize: 25,
+            fontWeight: FontWeight.w500,
+            color: Colors.white,
+          ),
         ),
         backgroundColor: Colors.blue,
         iconTheme: const IconThemeData(
