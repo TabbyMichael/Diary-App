@@ -1,7 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
-class ProfileSection extends StatelessWidget {
+import 'package:permission_handler/permission_handler.dart';
+
+class ProfileSection extends StatefulWidget {
   const ProfileSection({super.key});
+
+  @override
+  _ProfileSectionState createState() => _ProfileSectionState();
+}
+
+class _ProfileSectionState extends State<ProfileSection> {
+  File? _profileImage;
+
+  Future<void> _pickImage() async {
+    final status = await Permission.photos.status;
+    if (!status.isGranted) {
+      final result = await Permission.photos.request();
+      if (result.isGranted) {
+        _openImagePicker();
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Photo library permission not granted')),
+        );
+      }
+    } else {
+      _openImagePicker();
+    }
+  }
+
+  void _openImagePicker() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? pickedImage =
+        await picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedImage != null) {
+      setState(() {
+        _profileImage = File(pickedImage.path);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,15 +65,19 @@ class ProfileSection extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         children: [
           // Profile Picture and Name
-          const Row(
+          Row(
             children: [
-              CircleAvatar(
-                radius: 40,
-                backgroundImage:
-                    AssetImage('assets/profile.jpg'), // Placeholder image
+              GestureDetector(
+                onTap: _pickImage, // Trigger image picker
+                child: CircleAvatar(
+                  radius: 40,
+                  backgroundImage: _profileImage != null
+                      ? FileImage(_profileImage!)
+                      : const AssetImage('assets/profile.jpg') as ImageProvider,
+                ),
               ),
-              SizedBox(width: 20),
-              Column(
+              const SizedBox(width: 20),
+              const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
@@ -71,22 +114,24 @@ class ProfileSection extends StatelessWidget {
             leading: const Icon(Icons.lock),
             title: const Text('Change Password'),
             onTap: () {
-              Navigator.pushNamed(context, '/change_password');
+              Navigator.pushNamed(context, '/forgot_password');
             },
           ),
           const Divider(),
 
           // Account Information
-          const ListTile(
-            leading: Icon(Icons.info),
-            title: Text('Account Information'),
-            subtitle: Text('Member since: January 2023'),
+          ListTile(
+            leading: const Icon(Icons.help),
+            title: const Text('Account Information'),
+            onTap: () {
+              Navigator.pushNamed(context, '/accounts_information');
+            },
           ),
           const Divider(),
 
           // Linked Accounts
           ListTile(
-            leading: const Icon(Icons.link),
+            leading: const Icon(Icons.people),
             title: const Text('Linked Accounts'),
             onTap: () {
               Navigator.pushNamed(context, '/linked_accounts');
@@ -99,7 +144,7 @@ class ProfileSection extends StatelessWidget {
             leading: const Icon(Icons.privacy_tip),
             title: const Text('Privacy Settings'),
             onTap: () {
-              Navigator.pushNamed(context, '/privacy_settings');
+              Navigator.pushNamed(context, '/privacy_security');
             },
           ),
           const Divider(),
@@ -112,31 +157,10 @@ class ProfileSection extends StatelessWidget {
               style: TextStyle(color: Colors.red),
             ),
             onTap: () {
-              // Add a confirmation dialog before deleting
-              showDialog(
-                context: context,
-                builder: (context) => AlertDialog(
-                  title: const Text('Confirm Account Deletion'),
-                  content: const Text(
-                      'Are you sure you want to delete your account?'),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Text('Cancel'),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        // Add account deletion logic here
-                      },
-                      child: const Text('Delete'),
-                    ),
-                  ],
-                ),
-              );
+              Navigator.pushNamed(context, '/delete_account');
             },
           ),
+          const Divider(),
         ],
       ),
     );
