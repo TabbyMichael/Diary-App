@@ -9,7 +9,13 @@ class DailyPromptsScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           'Daily Prompts',
+          style: TextStyle(
+            fontSize: 25,
+            fontWeight: FontWeight.w500,
+            color: Colors.white,
+          ),
         ),
+        backgroundColor: Colors.blue,
       ),
       body: ListView(
         children: const [

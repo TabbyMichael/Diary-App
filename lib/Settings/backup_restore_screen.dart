@@ -9,7 +9,11 @@ class BackupRestoreScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           'Backup & Restore',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(
+            fontSize: 25,
+            fontWeight: FontWeight.w500,
+            color: Colors.white,
+          ),
         ),
         backgroundColor: Colors.blue,
         iconTheme: const IconThemeData(
