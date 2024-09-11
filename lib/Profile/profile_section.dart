@@ -101,8 +101,18 @@ class _ProfileSectionState extends State<ProfileSection> {
 
           // Edit Profile
           ListTile(
-            leading: const Icon(Icons.edit),
-            title: const Text('Edit Profile'),
+            leading: const Icon(
+              Icons.edit,
+              color: Colors.blue,
+            ),
+            title: const Text(
+              'Edit Profile',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ),
+            ),
             onTap: () {
               Navigator.pushNamed(context, '/edit_profile');
             },
@@ -111,8 +121,18 @@ class _ProfileSectionState extends State<ProfileSection> {
 
           // Change Password
           ListTile(
-            leading: const Icon(Icons.lock),
-            title: const Text('Change Password'),
+            leading: const Icon(
+              Icons.lock,
+              color: Colors.blue,
+            ),
+            title: const Text(
+              'Change Password',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ),
+            ),
             onTap: () {
               Navigator.pushNamed(context, '/forgot_password');
             },
@@ -121,8 +141,18 @@ class _ProfileSectionState extends State<ProfileSection> {
 
           // Account Information
           ListTile(
-            leading: const Icon(Icons.help),
-            title: const Text('Account Information'),
+            leading: const Icon(
+              Icons.help,
+              color: Colors.blue,
+            ),
+            title: const Text(
+              'Account Information',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ),
+            ),
             onTap: () {
               Navigator.pushNamed(context, '/accounts_information');
             },
@@ -131,8 +161,18 @@ class _ProfileSectionState extends State<ProfileSection> {
 
           // Linked Accounts
           ListTile(
-            leading: const Icon(Icons.people),
-            title: const Text('Linked Accounts'),
+            leading: const Icon(
+              Icons.people,
+              color: Colors.blue,
+            ),
+            title: const Text(
+              'Linked Accounts',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ),
+            ),
             onTap: () {
               Navigator.pushNamed(context, '/linked_accounts');
             },
@@ -141,8 +181,18 @@ class _ProfileSectionState extends State<ProfileSection> {
 
           // Privacy Settings
           ListTile(
-            leading: const Icon(Icons.privacy_tip),
-            title: const Text('Privacy Settings'),
+            leading: const Icon(
+              Icons.privacy_tip,
+              color: Colors.blue,
+            ),
+            title: const Text(
+              'Privacy Settings',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ),
+            ),
             onTap: () {
               Navigator.pushNamed(context, '/privacy_security');
             },
@@ -154,7 +204,11 @@ class _ProfileSectionState extends State<ProfileSection> {
             leading: const Icon(Icons.delete_forever, color: Colors.red),
             title: const Text(
               'Delete Account',
-              style: TextStyle(color: Colors.red),
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w400,
+                color: Colors.red,
+              ),
             ),
             onTap: () {
               Navigator.pushNamed(context, '/delete_account');
