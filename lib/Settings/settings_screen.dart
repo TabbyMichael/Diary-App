@@ -26,8 +26,18 @@ class SettingsScreen extends StatelessWidget {
         children: [
           // Profile Section
           ListTile(
-            leading: const Icon(Icons.person),
-            title: const Text('Profile'),
+            leading: const Icon(
+              Icons.person,
+              color: Colors.blue,
+            ),
+            title: const Text(
+              'Profile',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ),
+            ),
             onTap: () {
               Navigator.pushNamed(context, '/profile');
             },
@@ -36,8 +46,18 @@ class SettingsScreen extends StatelessWidget {
 
           // Backup and Restore Section
           ListTile(
-            leading: const Icon(Icons.backup),
-            title: const Text('Backup and Restore'),
+            leading: const Icon(
+              Icons.backup,
+              color: Colors.blue,
+            ),
+            title: const Text(
+              'Backup and Restore',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ),
+            ),
             onTap: () {
               Navigator.pushNamed(context, '/backup_restore');
             },
@@ -46,8 +66,18 @@ class SettingsScreen extends StatelessWidget {
 
           // Privacy & Security Section
           ListTile(
-            leading: const Icon(Icons.lock),
-            title: const Text('Privacy & Security'),
+            leading: const Icon(
+              Icons.lock,
+              color: Colors.blue,
+            ),
+            title: const Text(
+              'Privacy & Security',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ),
+            ),
             onTap: () {
               Navigator.pushNamed(context, '/privacy_security');
             },
@@ -56,8 +86,18 @@ class SettingsScreen extends StatelessWidget {
 
           // General Settings
           ListTile(
-            leading: const Icon(Icons.palette),
-            title: const Text('Theme'),
+            leading: const Icon(
+              Icons.palette,
+              color: Colors.blue,
+            ),
+            title: const Text(
+              'Theme',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ),
+            ),
             onTap: () {
               Navigator.pushNamed(context, '/theme');
             },
@@ -65,8 +105,18 @@ class SettingsScreen extends StatelessWidget {
           const Divider(),
 
           ListTile(
-            leading: const Icon(Icons.notifications),
-            title: const Text('Notifications'),
+            leading: const Icon(
+              Icons.notifications,
+              color: Colors.blue,
+            ),
+            title: const Text(
+              'Notifications',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ),
+            ),
             onTap: () {
               Navigator.pushNamed(context, '/notifications');
             },
@@ -74,8 +124,18 @@ class SettingsScreen extends StatelessWidget {
           const Divider(),
 
           ListTile(
-            leading: const Icon(Icons.language),
-            title: const Text('Language'),
+            leading: const Icon(
+              Icons.language,
+              color: Colors.blue,
+            ),
+            title: const Text(
+              'Language',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ),
+            ),
             onTap: () {
               Navigator.pushNamed(context, '/language');
             },
@@ -84,8 +144,18 @@ class SettingsScreen extends StatelessWidget {
 
           // Help & Support
           ListTile(
-            leading: const Icon(Icons.help),
-            title: const Text('Help & Support'),
+            leading: const Icon(
+              Icons.help,
+              color: Colors.blue,
+            ),
+            title: const Text(
+              'Help & Support',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ),
+            ),
             onTap: () {
               Navigator.pushNamed(context, '/help_support');
             },
@@ -94,8 +164,18 @@ class SettingsScreen extends StatelessWidget {
 
           // About and Legal
           ListTile(
-            leading: const Icon(Icons.info),
-            title: const Text('About App'),
+            leading: const Icon(
+              Icons.info,
+              color: Colors.blue,
+            ),
+            title: const Text(
+              'About App',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ),
+            ),
             onTap: () {
               Navigator.pushNamed(context, '/about');
             },
@@ -103,8 +183,18 @@ class SettingsScreen extends StatelessWidget {
           const Divider(),
 
           ListTile(
-            leading: const Icon(Icons.article),
-            title: const Text('Terms of Service'),
+            leading: const Icon(
+              Icons.article,
+              color: Colors.blue,
+            ),
+            title: const Text(
+              'Terms of Service',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ),
+            ),
             onTap: () {
               Navigator.pushNamed(context, '/terms');
             },
@@ -112,8 +202,18 @@ class SettingsScreen extends StatelessWidget {
           const Divider(),
 
           ListTile(
-            leading: const Icon(Icons.privacy_tip),
-            title: const Text('Privacy Policy'),
+            leading: const Icon(
+              Icons.privacy_tip,
+              color: Colors.blue,
+            ),
+            title: const Text(
+              'Privacy Policy',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ),
+            ),
             onTap: () {
               Navigator.pushNamed(context, '/privacy_policy');
             },

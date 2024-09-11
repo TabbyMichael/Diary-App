@@ -26,8 +26,18 @@ class PrivacySecurityScreen extends StatelessWidget {
         children: [
           // Change Password Section
           ListTile(
-            leading: const Icon(Icons.lock),
-            title: const Text('Change Password'),
+            leading: const Icon(
+              Icons.lock,
+              color: Colors.blue,
+            ),
+            title: const Text(
+              'Change Password',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ),
+            ),
             onTap: () {
               // Navigate to Change Password Screen
               Navigator.pushNamed(context, '/forgot_password');
@@ -37,8 +47,18 @@ class PrivacySecurityScreen extends StatelessWidget {
 
           // Enable Encryption Section
           ListTile(
-            leading: const Icon(Icons.security),
-            title: const Text('Enable Encryption'),
+            leading: const Icon(
+              Icons.security,
+              color: Colors.blue,
+            ),
+            title: const Text(
+              'Enable Encryption',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ),
+            ),
             onTap: () {
               // Navigate to Encryption Settings Screen
               Navigator.pushNamed(context, '/enable_encryption');
@@ -48,8 +68,18 @@ class PrivacySecurityScreen extends StatelessWidget {
 
           // Two-Factor Authentication Section
           ListTile(
-            leading: const Icon(Icons.two_wheeler),
-            title: const Text('Two-Factor Authentication'),
+            leading: const Icon(
+              Icons.two_wheeler,
+              color: Colors.blue,
+            ),
+            title: const Text(
+              'Two-Factor Authentication',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ),
+            ),
             onTap: () {
               // Navigate to 2FA Setup Screen
               Navigator.pushNamed(context, '/two_factor_authentication');
@@ -59,8 +89,18 @@ class PrivacySecurityScreen extends StatelessWidget {
 
           // Login History Section
           ListTile(
-            leading: const Icon(Icons.history),
-            title: const Text('Login History'),
+            leading: const Icon(
+              Icons.history,
+              color: Colors.blue,
+            ),
+            title: const Text(
+              'Login History',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ),
+            ),
             onTap: () {
               // Navigate to Login History Screen
               Navigator.pushNamed(context, '/login_history');
@@ -70,8 +110,18 @@ class PrivacySecurityScreen extends StatelessWidget {
 
           // App Permissions Section
           ListTile(
-            leading: const Icon(Icons.perm_device_information),
-            title: const Text('App Permissions'),
+            leading: const Icon(
+              Icons.perm_device_information,
+              color: Colors.blue,
+            ),
+            title: const Text(
+              'App Permissions',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ),
+            ),
             onTap: () {
               // Navigate to App Permissions Screen
               Navigator.pushNamed(context, '/app_permissions');
@@ -81,8 +131,18 @@ class PrivacySecurityScreen extends StatelessWidget {
 
           // Security Tips Section
           ListTile(
-            leading: const Icon(Icons.info),
-            title: const Text('Security Tips'),
+            leading: const Icon(
+              Icons.info,
+              color: Colors.blue,
+            ),
+            title: const Text(
+              'Security Tips',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ),
+            ),
             onTap: () {
               // Navigate to Security Tips Screen
               Navigator.pushNamed(context, '/security_tips');
@@ -92,8 +152,18 @@ class PrivacySecurityScreen extends StatelessWidget {
 
           // Contact Support Section
           ListTile(
-            leading: const Icon(Icons.support),
-            title: const Text('Contact Support'),
+            leading: const Icon(
+              Icons.support,
+              color: Colors.blue,
+            ),
+            title: const Text(
+              'Contact Support',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ),
+            ),
             onTap: () {
               // Navigate to Contact Support Screen
               Navigator.pushNamed(context, '/contact_us');
