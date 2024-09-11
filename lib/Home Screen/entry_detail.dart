@@ -1,3 +1,4 @@
+import 'package:diary/Storage/database_helper.dart';
 import 'package:flutter/material.dart';
 
 class EntryDetailScreen extends StatefulWidget {
@@ -10,6 +11,8 @@ class EntryDetailScreen extends StatefulWidget {
 class _EntryDetailScreenState extends State<EntryDetailScreen> {
   String? _selectedCategory;
   DateTime _selectedDate = DateTime.now();
+  TextEditingController _titleController = TextEditingController();
+  TextEditingController _contentController = TextEditingController();
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? pickedDate = await showDatePicker(
@@ -24,6 +27,17 @@ class _EntryDetailScreenState extends State<EntryDetailScreen> {
         _selectedDate = pickedDate;
       });
     }
+  }
+
+  void _saveEntry() async {
+    Map<String, dynamic> entry = {
+      'title': _titleController.text,
+      'content': _contentController.text,
+      'date': _selectedDate.toIso8601String(),
+      'category': _selectedCategory ?? 'Uncategorized',
+    };
+    await DatabaseHelper().insertEntry(entry);
+    Navigator.pop(context); // Go back after saving
   }
 
   @override
@@ -42,7 +56,7 @@ class _EntryDetailScreenState extends State<EntryDetailScreen> {
         ),
         backgroundColor: Colors.blue,
         iconTheme: const IconThemeData(
-          color: Colors.white, // Set the icon color to white
+          color: Colors.white,
         ),
       ),
       body: Padding(
@@ -50,7 +64,6 @@ class _EntryDetailScreenState extends State<EntryDetailScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Date Display
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -62,52 +75,32 @@ class _EntryDetailScreenState extends State<EntryDetailScreen> {
                   ),
                 ),
                 IconButton(
-                  icon: const Icon(Icons.calendar_today,
-                      color: Colors.white), // White color for calendar icon
+                  icon: const Icon(Icons.calendar_today, color: Colors.white),
                   onPressed: () => _selectDate(context),
                 ),
               ],
             ),
             const SizedBox(height: 10),
-
-            // Title Header
-            const Text(
-              'Title',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            const Text('Title',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             const SizedBox(height: 5),
-
-            // Title Field
-            const TextField(
-              decoration: InputDecoration(
+            TextField(
+              controller: _titleController,
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 fillColor: Colors.white10,
                 filled: true,
               ),
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 20),
-
-            // Content Header
-            const Text(
-              'Content',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            const Text('Content',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             const SizedBox(height: 5),
-
-            // Content Field
-            const Expanded(
+            Expanded(
               child: TextField(
-                decoration: InputDecoration(
+                controller: _contentController,
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   fillColor: Colors.white10,
                   filled: true,
@@ -115,23 +108,12 @@ class _EntryDetailScreenState extends State<EntryDetailScreen> {
                 maxLines: null,
                 expands: true,
                 keyboardType: TextInputType.multiline,
-                textAlignVertical:
-                    TextAlignVertical.top, // Align text to the top
               ),
             ),
             const SizedBox(height: 20),
-
-            // Tags/Category Selector Header
-            const Text(
-              'Tag/Category',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            const Text('Tag/Category',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             const SizedBox(height: 5),
-
-            // Tags/Category Selector
             DropdownButtonFormField<String>(
               value: _selectedCategory,
               items: <String>[
@@ -141,6 +123,7 @@ class _EntryDetailScreenState extends State<EntryDetailScreen> {
                 'Health',
                 'Goals',
                 'Finance',
+                'Entertainment',
                 'Gratitude',
                 'Learning',
                 'Creative',
@@ -166,38 +149,21 @@ class _EntryDetailScreenState extends State<EntryDetailScreen> {
               ),
             ),
             const SizedBox(height: 20),
-
-            // Save Button
             Center(
               child: SizedBox(
                 width: 150,
                 child: ElevatedButton(
-                  onPressed: () {
-                    // Save entry logic
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text(
-                          'Entry saved!',
-                        ),
-                      ),
-                    );
-                    Navigator.pop(context); // Go back to the previous screen
-                  },
+                  onPressed: _saveEntry,
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 10),
-                    backgroundColor: Colors.blue, // Blue color for button
-                    textStyle: const TextStyle(
-                      fontSize: 16,
-                      color: Colors.white, // Text color
-                    ),
+                    backgroundColor: Colors.blue,
                   ),
                   child: const Text(
                     'Save',
                     style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.white,
-                    ),
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white),
                   ),
                 ),
               ),

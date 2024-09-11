@@ -1,6 +1,7 @@
 import 'package:diary/Help%20&%20Support/FAQS_sreen%20.dart';
 import 'package:diary/Help%20&%20Support/contact_us_screen%20.dart';
 import 'package:diary/Help%20&%20Support/live_chat_screen%20.dart';
+import 'package:diary/Home%20Screen/diary_entry_notifier.dart';
 import 'package:diary/Privacy/app_permissions_section.dart';
 import 'package:diary/Privacy/enable_encryption_section.dart';
 import 'package:diary/Privacy/login_history_section.dart';
@@ -11,6 +12,7 @@ import 'package:diary/Profile/account_information_screen%20.dart';
 import 'package:diary/Profile/delete_account.dart';
 import 'package:diary/Profile/edit_profile.dart';
 import 'package:diary/Profile/linked_accounts.dart';
+import 'package:diary/Storage/database_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:diary/Language/app_locale_provider.dart';
@@ -36,9 +38,18 @@ import 'package:diary/Settings/theme_section.dart';
 import 'package:diary/media_gallery_screen.dart';
 import 'package:diary/mood_tracking_screen.dart';
 import 'package:diary/reminder_screen.dart';
+import 'package:provider/provider.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await DatabaseHelper()
+      .database; // Ensure the database is initialized before running the app
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => DiaryEntryNotifier(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -155,7 +166,7 @@ class _MyAppState extends State<MyApp> {
           Locale("ur"),
           Locale("uz"),
           Locale("vi"),
-          Locale("zh")
+          Locale("zh"),
         ],
         localizationsDelegates: const [
           GlobalMaterialLocalizations.delegate,
@@ -204,7 +215,6 @@ class _MyAppState extends State<MyApp> {
           '/delete_account': (context) => const DeleteAccountScreen(),
           '/accounts_information': (context) =>
               const AccountInformationScreen(),
-          // '/theme': (context) => const ThemeScreen(),
         },
       ),
     );
