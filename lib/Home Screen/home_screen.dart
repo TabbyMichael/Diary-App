@@ -1,6 +1,5 @@
 import 'package:diary/Home%20Screen/diary_entry_notifier.dart';
 import 'package:diary/Home%20Screen/entry_list.dart';
-import 'package:diary/Storage/database_helper.dart';
 import 'package:flutter/material.dart';
 import 'edit_diary_entry_screen.dart'; // Import the EditDiaryEntryScreen
 import 'calendar_screen.dart'; // Import your CalendarScreen
@@ -12,6 +11,37 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final notifier = Provider.of<DiaryEntryNotifier>(context);
+
+    // Method to show the confirmation dialog
+    Future<void> _showDeleteDialog(BuildContext context, int entryId) async {
+      return showDialog<void>(
+        context: context,
+        barrierDismissible:
+            false, // The dialog cannot be dismissed by tapping outside
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Delete Entry'),
+            content: const Text('Are you sure you want to delete this entry?'),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Cancel'),
+                onPressed: () {
+                  Navigator.of(context).pop(); // Close the dialog
+                },
+              ),
+              TextButton(
+                child: const Text('Yes'),
+                onPressed: () {
+                  notifier.deleteEntry(
+                      entryId); // Delete the entry (now passed as an int)
+                  Navigator.of(context).pop(); // Close the dialog
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -88,10 +118,18 @@ class HomeScreen extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => const EntryListScreen(),
+                      settings: RouteSettings(
+                        arguments: {
+                          'start': DateTime.now(),
+                          'end': DateTime.now().add(
+                              Duration(hours: 23, minutes: 59, seconds: 59)),
+                        },
+                      ),
                     ),
                   );
                 },
               ),
+
               const SizedBox(height: 20),
 
               // Recent Entries directly after Today's Entry
@@ -114,8 +152,8 @@ class HomeScreen extends StatelessWidget {
                   trailing: IconButton(
                     icon: const Icon(Icons.delete, color: Colors.black),
                     onPressed: () {
-                      notifier
-                          .deleteEntry(entry['id']); // Use notifier to delete
+                      _showDeleteDialog(context,
+                          int.parse(entry['id'])); // Ensure entryId is an int
                     },
                   ),
                   onTap: () {
@@ -123,7 +161,8 @@ class HomeScreen extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) => EditDiaryEntryScreen(
-                          entryId: entry['id'], // Pass the entry ID
+                          entryId:
+                              int.parse(entry['id']), // Pass entryId as an int
                           initialTitle: entry['title'] ?? 'No Title',
                           initialContent: entry['content'] ?? 'No Content',
                           initialDate: entry['date'] ?? 'No Date',

@@ -131,11 +131,21 @@ class DatabaseHelper {
     }
   }
 
+  Future<List<Map<String, dynamic>>> getEntriesForDateRange(
+      DateTime start, DateTime end) async {
+    Database db = await database;
+    return await db.query(
+      'entries',
+      where: 'date BETWEEN ? AND ?',
+      whereArgs: [start.toIso8601String(), end.toIso8601String()],
+    );
+  }
+
   // Helper function to validate that all required fields are present
   bool _validateEntry(Map<String, dynamic> entry) {
-    return entry.containsKey('title') &&
-        entry.containsKey('content') &&
-        entry.containsKey('date');
+    return entry['title']?.isNotEmpty == true &&
+        entry['content']?.isNotEmpty == true &&
+        entry['date']?.isNotEmpty == true;
   }
 
   // Helper function to check if the date format is valid (ISO 8601)
@@ -177,39 +187,33 @@ class _DiaryPageState extends State<DiaryPage> {
   }
 
   Future<void> _fetchEntries() async {
-    final arguments =
-        ModalRoute.of(context as BuildContext)?.settings.arguments as Map?;
     final DateTime today = DateTime.now();
+    // Set start of the day to 12:00 AM and end of the day to 11:59:59 PM
     final DateTime startDate =
-        arguments?['start'] ?? DateTime(today.year, today.month, today.day);
-    final DateTime endDate = arguments?['end'] ??
+        DateTime(today.year, today.month, today.day, 0, 0, 0);
+    final DateTime endDate =
         DateTime(today.year, today.month, today.day, 23, 59, 59);
 
-    try {
-      // Fetching all entries from the database
-      final dbHelper = DatabaseHelper();
-      final allEntries = await dbHelper.getEntries();
+    print('Fetching entries from $startDate to $endDate'); // Debugging
 
-      // Filter entries by date range
-      final entries = allEntries.where((entry) {
-        final entryDate = DateTime.parse(entry['date']);
-        return entryDate.isAfter(startDate) && entryDate.isBefore(endDate);
-      }).toList();
+    // Fetching entries from the database
+    final dbHelper = DatabaseHelper();
+    final allEntries = await dbHelper.getEntries();
 
-      if (mounted) {
-        setState(() {
-          _entries = entries;
-          _loading = false;
-        });
-      }
-    } catch (e) {
-      if (mounted) {
-        setState(() {
-          _loading =
-              false; // Ensure loading is set to false even if there's an error
-        });
-      }
-      print('Error fetching entries: $e');
+    // Filter entries by date range
+    final entries = allEntries.where((entry) {
+      final entryDate = DateTime.parse(entry['date']);
+      return entryDate.isAfter(startDate) && entryDate.isBefore(endDate);
+    }).toList();
+
+    print('Filtered entries: $entries'); // Debugging
+
+    // Update the state
+    if (mounted) {
+      setState(() {
+        _entries = entries;
+        _loading = false;
+      });
     }
   }
 
